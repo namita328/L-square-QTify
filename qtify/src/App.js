@@ -1,8 +1,10 @@
 import HeroSection from "./Components/HeroSection/HeroSection";
 import NavBar from "./Components/NavBar/NavBar";
-import Card from "./Components/Cards/Card";
+import Section from "./Components/CardSection/Section";
+// import Card from "./Components/Cards/Card";
 import { fetchTopAlbums } from "./Components/api/api";
 import { useEffect, useState } from "react";
+import styles from "./App.module.css";
 
 function App() {
   const [topAlbumData, setTopAlbumData] = useState([]);
@@ -26,9 +28,12 @@ function App() {
     <>
       <NavBar />
       <HeroSection />
-      {topAlbumData.map((ele) => (
+      {/* {topAlbumData.map((ele) => (
         <Card data={ele} type="album" />
-      ))}
+      ))} */}
+      <div className={styles.sectionWrapper}>
+        <Section type="album" title="Top albums" data={topAlbumData} />
+      </div>
     </>
   );
 }

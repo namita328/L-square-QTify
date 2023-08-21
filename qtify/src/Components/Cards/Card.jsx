@@ -7,9 +7,9 @@ const Card = ({ data, type }) => {
     switch (type) {
       case "album": {
         const { image, follows, title, songs } = data;
-        console.log(data);
+        console.log("data", data);
         return (
-          <Tooltip title={`${songs?.length} Songs`} placeholder="top" arrow>
+          <Tooltip title={`${songs?.length} Songs`} placement="top" arrow>
             <div className={styles.wrapper}>
               <div className={styles.card}>
                 <img src={image} alt="album" width={159} height={170} />
