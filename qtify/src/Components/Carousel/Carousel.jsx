@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
 import { Navigation } from "swiper/modules";
@@ -6,9 +6,8 @@ import styles from "./Carousel.module.css";
 import CarouselLeftNavigation from "./CarouselLeftNavigation/CarouselLeftNavigation";
 import CarouselRightNavigation from "./CarouselRightNavigation/CarouselRightNavigation";
 
-const Controls = ({ data }) => {
+const Controls = ({ data, hideRightArrow }) => {
   const swiper = useSwiper();
-  console.log(swiper);
 
   useEffect(() => {
     swiper.slideTo(0);
@@ -18,7 +17,22 @@ const Controls = ({ data }) => {
 };
 
 const Carousel = ({ data, renderCardComponent }) => {
-  console.log(data);
+  const [hideRightArrow, setHideRightArrow] = useState(false);
+
+  const handleReachEnd = (swiper) => {
+    const isEnd = swiper.isEnd;
+    setHideRightArrow(isEnd);
+    localStorage.setItem("hideRightArrow", "true");
+  };
+
+  const handleSlideChange = (swiper) => {
+    const activeIndex = swiper.activeIndex;
+    if (activeIndex === 0) {
+      setHideRightArrow(false);
+      localStorage.setItem("hideRightArrow", "false");
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <Swiper
@@ -27,10 +41,14 @@ const Carousel = ({ data, renderCardComponent }) => {
         slidesPerView={"auto"}
         spaceBetween={40}
         allowTouchMove
+        onReachEnd={(swiper) => handleReachEnd(swiper)}
+        onSlideChange={(swiper) => handleSlideChange(swiper)}
       >
         <Controls data={data} />
         <CarouselLeftNavigation />
-        <CarouselRightNavigation />
+        {/* <CarouselRightNavigation /> */}
+        {hideRightArrow ? null : <CarouselRightNavigation />}
+
         {data.map((ele) => (
           <SwiperSlide key={ele.id}>{renderCardComponent(ele)}</SwiperSlide>
         ))}

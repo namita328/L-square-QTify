@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import Card from "../Cards/Card";
-import styles from "./Section.module.css";
+import styles from "./CardSection.module.css";
 import Carousel from "../Carousel/Carousel";
 
-const Section = ({ title, data, type }) => {
+const NewSection = ({ title, data, type }) => {
   const [carouselToggle, setCarouselToggle] = useState(true);
 
   const handleToggle = () => {
@@ -43,4 +43,4 @@ const Section = ({ title, data, type }) => {
   );
 };
 
-export default Section;
+export default NewSection;
