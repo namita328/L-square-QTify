@@ -7,6 +7,7 @@ import HeroSection from "../HeroSection/HeroSection";
 import NavBar from "../NavBar/NavBar";
 import Songs from "../CardSection/Songs";
 import styles from "../../App.module.css";
+import Faq from "../Accordian/Faq";
 
 const LandingPage = () => {
   const [topAlbumData, setTopAlbumData] = useState([]);
@@ -48,7 +49,7 @@ const LandingPage = () => {
     }
   };
 
-  const generateSongs = async () => {
+  const generateSongs = async (searchTerm) => {
     try {
       let key;
       console.log("newSongs", newSongs);
@@ -64,9 +65,13 @@ const LandingPage = () => {
       } else {
         key = "blues";
       }
+      let filteredSongs = newSongs.filter((song) =>
+        song.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
       const res = newSongs.filter((item) => item.genre.key === key);
       console.log("generateSongs", res);
-      filteredData(res);
+      // filteredData(res);
+      filteredData(filteredSongs);
     } catch (err) {
       console.log(err);
     }
@@ -88,7 +93,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar newSongs={newSongs} generateSongs={generateSongs} />
       <HeroSection />
       <div className={styles.sectionWrapper1}>
         <TopSection type="album" title="Top albums" data={topAlbumData} />
@@ -108,6 +113,8 @@ const LandingPage = () => {
           handleChange={handleChange}
         />
       </div>
+      <hr />
+      <Faq />
     </>
   );
 };
