@@ -15,7 +15,7 @@ const Faq = () => {
         <div className={styles.accordionContainer}>
           <Accordion className={styles.accordion}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+              expandIcon={<ExpandMoreIcon style={{ color: "green" }} />}
               aria-controls="panel1a-content"
               id="panel1a-header"
               className={styles.accordionHeader1}
@@ -30,12 +30,12 @@ const Faq = () => {
               <Typography>Is QTify free to use?</Typography>
             </AccordionSummary>
             <AccordionDetails className={styles.accordionDetails}>
-              <Typography>Yes, you can hear Songs </Typography>
+              <Typography>Yes! it is 100% free, and has 0% ads. </Typography>
             </AccordionDetails>
           </Accordion>
           <Accordion className={styles.accordion}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+              expandIcon={<ExpandMoreIcon style={{ color: "green" }} />}
               aria-controls="panel2a-content"
               id="panel2a-header"
               className={styles.accordionHeader1}
