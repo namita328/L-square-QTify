@@ -14,7 +14,7 @@ const LandingPage = () => {
   const [newAlbumData, setNewAlbumData] = useState([]);
   const [newSongs, setNewSongs] = useState([]);
   const [filteredDataValues, setFilteredDataValues] = useState([]);
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     console.log("handle chnge", newValue);
@@ -49,32 +49,23 @@ const LandingPage = () => {
     }
   };
 
-  const generateSongs = async (searchTerm) => {
-    try {
-      let key;
-      console.log("newSongs", newSongs);
-      if (value === 0) {
-        filteredData(newSongs);
-        return;
-      } else if (value === 1) {
-        key = "rock";
-      } else if (value === 2) {
-        key = "pop";
-      } else if (value === 3) {
-        key = "jazz";
-      } else {
-        key = "blues";
-      }
-      let filteredSongs = newSongs.filter((song) =>
-        song.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      const res = newSongs.filter((item) => item.genre.key === key);
-      console.log("generateSongs", res);
-      // filteredData(res);
-      filteredData(filteredSongs);
-    } catch (err) {
-      console.log(err);
+  const generateSongs = async () => {
+    let key;
+    console.log("newSongs", newSongs);
+    if (value === 0) {
+      filteredData(newSongs);
+      return;
+    } else if (value === 1) {
+      key = "rock";
+    } else if (value === 2) {
+      key = "pop";
+    } else if (value === 3) {
+      key = "jazz";
+    } else {
+      key = "blues";
     }
+    let res = newSongs.filter((item) => item.genre.key === key);
+    filteredData(res);
   };
 
   useEffect(() => {

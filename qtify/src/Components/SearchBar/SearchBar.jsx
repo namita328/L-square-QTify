@@ -3,22 +3,22 @@ import styles from "./SearchBar.module.css";
 import { ReactComponent as SearchIcon } from "../../assets/Search icon.svg";
 
 const SearchBar = ({ placeholder, data, onSearch, generateSongs }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const handleSearchInputChange = (event) => {
-    const value = event.target.value;
-    setSearchTerm(value);
-    generateSongs(value);
-  };
-  const handleInputClick = () => {
-    setShowSuggestions(true);
-  };
+  // const handleSearchInputChange = (event) => {
+  //   const value = event.target.value;
+  //   setSearchTerm(value);
+  //   generateSongs(value);
+  // };
+  // const handleInputClick = () => {
+  //   setShowSuggestions(true);
+  // };
 
-  const handleSuggestionClick = (suggestion) => {
-    setSearchTerm(suggestion);
-    setShowSuggestions(false);
-  };
+  // const handleSuggestionClick = (suggestion) => {
+  //   setSearchTerm(suggestion);
+  //   setShowSuggestions(false);
+  // };
 
   return (
     <div>
@@ -26,15 +26,15 @@ const SearchBar = ({ placeholder, data, onSearch, generateSongs }) => {
         <input
           className={styles.search}
           placeholder={placeholder}
-          value={searchTerm}
-          onChange={handleSearchInputChange}
-          onClick={handleInputClick}
+          // value={searchTerm}
+          // onChange={handleSearchInputChange}
+          // onClick={handleInputClick}
         />
         <button className={styles.searchButton} type="submit">
           <SearchIcon />
         </button>
       </div>
-      {showSuggestions && (
+      {/* {showSuggestions && (
         <div className={styles.autocomplete}>
           {data.map((suggestion, index) => (
             <div
@@ -46,7 +46,7 @@ const SearchBar = ({ placeholder, data, onSearch, generateSongs }) => {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
